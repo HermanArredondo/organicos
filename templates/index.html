@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://kit.fontawesome.com/af6d0e67e4.js" crossorigin="anonymous"></script>
+</head>
+<body class="fondo">
+    
+    <header class="encabezado">
+        <img src="" alt="">
+
+        <h1>Restaurant</h1>
+
+        <nav>
+            <a href="{{ url_for('login') }}">Iniciar Sesión</a>
+            <a href="{{ url_for('admin') }}">Administración</a>
+        </nav>
+    </header>
+    <main class="imagen_baner">
+        <div class="oscurecer">
+            <div class="contenido_baner">
+                <h1>¿Quieres realizar un pedido?</h1>
+                <p>Llama ahora y tienes tu pedido en la puerta de tu casa en 30<sub>min</sub> </p>
+                <a class="enlace" href="{{ url_for('admin') }}">LLamar</a>
+            </div>
+        </div>
+        
+    </main>
+    <!-- Lista de comidas -->
+    <section>
+        <h3 style="text-align: center; margin-top: 50px;">Menú</h3>
+        <div class="principal">
+            {% for comida in comidas %}
+                <div class="contenedor_comidas">
+                        <h3>{{ comida.nombre }}</h3>
+                        <p>{{ comida.precio }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>

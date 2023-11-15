@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Administración</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- <link rel="stylesheet" href="/static/normalize.css"> -->
+    <!--  FONTS AWESOME  -->
+    <script src="https://kit.fontawesome.com/af6d0e67e4.js" crossorigin="anonymous"></script>
+</head>
+<body class="fondo">
+    <main class="contenedor_dashboard">
+        <div class="columna_panel">
+            <button class="icono" onclick="mostrarContenido('contenido1')">
+                <i class="fa-solid fa-bowl-food"></i>
+                Agregar a la pagina principal
+            </button>
+            <button class="icono" onclick="mostrarContenido('contenido2')">
+                <i class="fa-solid fa-user"></i>
+                Redes Sociales vinculadas
+            </button>
+            <button class="icono" onclick="mostrarContenido('contenido3')">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                </svg>
+                Menú General
+            </button>
+            <button class="icono" src="index.html">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+                <a href="/logout">Cerrar Sesión</a>
+            </button>
+        </div>
+        <!-- Contenido por defecto -->
+        <div id="contenido_default" class="contenido_dashboard default">
+            <h2>Bienvenido Herman Arredondo</h2>
+            <p>Este es tu panel de Administración</p>
+        </div>
+        <div id="contenido1" class="contenido_dashboard">
+            <!-- Formulario para agregar comida -->
+            <form class="form_admin" method="post" action="/agregar_comida">
+                <label for="nombre">Nombre de la comida:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <br>
+                <label for="precio">Precio:</label>
+                <input type="text" id="precio" name="precio" required>
+                <br>
+                <label for="imagen">URL de la imagen:</label>
+                <input type="text" id="imagen" name="imagen" required>
+                <br>
+                <button type="submit">Agregar Comida</button>
+            </form>
+        </div>
+    
+        <div id="contenido2" class="contenido_dashboard">
+            <form class="form_admin" method="post" action="/">
+                <legend>Completa la info</legend>
+                <input name="Facebook" type="text" placeholder="Facebook">
+                <input name="WhatsApp" type="tel" placeholder="WhatsApp">
+                <input name="Email" type="email" placeholder="Email">
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <div id="contenido3" class="contenedor_dashboard">
+            <ul class="lista_eliminar">
+                {% for comida in comidas %}
+                    <li class="division_li">
+                        <p>{{ comida.nombre }}</p>
+                        <p>{{ comida.precio }} </p>
+                        <a href="{{ url_for('eliminar_comida', indice=loop.index-1) }}">Eliminar</a>
+                    </li>
+                {% endfor %}
+            </ul> 
+        </div>  
+    </main>
+    <script src="/static/funciones.js"></script>
+</body>
+</html>
